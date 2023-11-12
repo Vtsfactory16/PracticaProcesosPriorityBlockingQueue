@@ -1,17 +1,27 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+
+import java.util.concurrent.PriorityBlockingQueue;
+
 public class Main {
+
     public static void main(String[] args) {
-        // Press Alt+Intro with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        // Crear una peluquería
+        Peluqueria peluqueria = new Peluqueria();
 
-        // Press Mayús+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        // Añadir solicitudes de servicio
+        peluqueria.atenderSolicitud(new SolicitudServicio("Juan", "Corte de pelo", 10));
+        peluqueria.atenderSolicitud(new SolicitudServicio("María", "Tinte", 15));
+        peluqueria.atenderSolicitud(new SolicitudServicio("Pedro", "Peinado", 5));
 
-            // Press Mayús+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+        // Ver el estado de las solicitudes
+        System.out.println("Solicitudes en espera:");
+        for (SolicitudServicio solicitud : peluqueria.obtenerSolicitudes()) {
+            System.out.println(solicitud);
+        }
+
+        // Atender las solicitudes
+        while (!peluqueria.estaVacia()) {
+            SolicitudServicio solicitud = peluqueria.atenderSolicitud();
+            System.out.println("Atendiendo solicitud: " + solicitud);
         }
     }
 }
