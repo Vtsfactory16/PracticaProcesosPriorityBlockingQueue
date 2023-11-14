@@ -4,7 +4,7 @@
 mismas reglas de ordenamiento que la clase PriorityQueue y proporciona operaciones de recuperación de
 bloqueo. Mientras que esta cola es lógicamente ilimitada, los intentos de adición pueden fallar debido
 a la escasez de recursos (causando OutOfMemoryError).
-
+<br>
 **Funcionamiento:**  
 Los elementos de PriorityBlockingQueue se ordenan según su prioridad. La prioridad
 de un elemento se determina mediante un comparador, que se puede especificar al crear
