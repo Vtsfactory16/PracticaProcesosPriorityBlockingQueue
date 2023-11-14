@@ -8,7 +8,8 @@ a la escasez de recursos (causando OutOfMemoryError).
 **Funcionamiento:**  
 Los elementos de PriorityBlockingQueue se ordenan según su prioridad. La prioridad
 de un elemento se determina mediante un comparador, que se puede especificar al crear
-la cola o se puede utilizar el orden natural de los elementos.<br>
+la cola o se puede utilizar el orden natural de los elementos.
+<br>
 Cuando se añade un elemento a PriorityBlockingQueue, se coloca al principio de la cola 
 si tiene la mayor prioridad. Si el elemento tiene la misma prioridad que otros elementos
 de la cola, se coloca al final de los elementos con esa prioridad.<br>
