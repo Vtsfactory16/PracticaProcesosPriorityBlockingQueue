@@ -42,10 +42,13 @@ public class Peluquero extends Thread{
         this.initialTime = initialTime;
     }
 
-    // Ahora en lugar de tener el procedimiento ProcesaCompra, lo que
-    // hacemos es sobreescribir el método run() para que realice esa tarea.
+
     @Override
     public void run() {
+        if (this.cliente == null) {
+            System.out.println("El peluquero " + this.nombre + " no tiene clientes en espera.");
+            return;
+        }
 
         System.out.println("El peluquero " + this.nombre + " comienza a pelar al cliente "
                 + this.cliente.getNombre() + " EN EL TIEMPO: "

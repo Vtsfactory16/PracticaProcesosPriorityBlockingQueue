@@ -32,11 +32,15 @@ public class Cliente implements Comparable<Cliente>{
         this.vip = vip;
     }
 
+
     @Override
     public String toString() {
-        return "Cliente{" + "nombre=" + nombre + ", vip=" + vip + '}';
+        String cadena = nombre;
+        if(vip){
+            cadena += " (vip)";
+        }
+        return cadena;
     }
-
     @Override
     public int compareTo(Cliente o) {
         if(this.vip && o.isVip() || !this.vip && !o.isVip()){
