@@ -1,17 +1,41 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import java.util.concurrent.PriorityBlockingQueue;
+
 public class Main {
+
     public static void main(String[] args) {
-        // Press Alt+Intro with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        //Crea una cola de prioridad para almacenar clientes
+        PriorityBlockingQueue<Cliente> cola = new PriorityBlockingQueue<>(2, new OrdenarClientes());
 
-        // Press Mayús+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        //Iniciar el generador de clientes que agrega clientes a la cola
+        GeneradorClientes generadorClientes = new GeneradorClientes(cola);
+        generadorClientes.start();
 
-            // Press Mayús+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+        //Crea tres peluqueros
+        Peluquero P1 = new Peluquero("Paqui");
+        Peluquero P2 = new Peluquero("Julian");
+        Peluquero P3 = new Peluquero("Ridu");
+
+        //Imprime el mensaje
+        System.out.println("EMPIEZA LA JORNADA LABORAL EN LA PELUQUERIA DE PAQUI\n" +
+                "----------------------------------------------------\n");
+
+        while (true) {
+            //Verifica si el peluquero está ocupado y hay cliente en espera
+            if (!P1.isAlive() && !cola.isEmpty()) {
+                P1 = new Peluquero("Paqui");
+                P1.setCliente(cola.poll());
+                P1.start();
+            }
+            if (!P2.isAlive() && !cola.isEmpty()) {
+                P2 = new Peluquero("Julian");
+                P2.setCliente(cola.poll());
+                P2.start();
+            }
+            if (!P3.isAlive() && !cola.isEmpty()) {
+                P3 = new Peluquero("Ridu");
+                P3.setCliente(cola.poll());
+                P3.start();
+            }
         }
     }
 }
